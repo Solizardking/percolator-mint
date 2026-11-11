@@ -1,0 +1,48 @@
+{
+ "devnet": {
+  "Cluster": "DEVNET",
+  "Payer / owner": "CstbLXKvpVDLGcF1enknDUshmg5m2kWAxSkhjiPGkwwq",
+  "New asset address": "3XX2Had6KKFEnbZ7WwNXsdHB2S8mbRHjm6ZaHPGp5wZt",
+  "Update authority": "Address CstbLXKvpVDLGcF1enknDUshmg5m2kWAxSkhjiPGkwwq",
+  "Asset rent": "0.00350152 SOL",
+  "Agent Identity PDA rent": "0.00117856 SOL",
+  "Network fee": "0.00001 SOL",
+  "TOTAL cost": "0.00469008 SOL",
+  "checks": [
+   "✓ Simulation succeeded",
+   "✓ RPC genesis matches selected cluster",
+   "✓ Owner = connected wallet",
+   "✓ Update authority = connected wallet (no extra authority)",
+   "✓ Only AgentIdentity plugin",
+   "✓ AgentIdentity URI = Arweave registration",
+   "✓ Name / URI match",
+   "✓ Wallet balance covers total"
+  ],
+  "signCalls": 1,
+  "logTail": "Not sent: MOCK WALLET: signing refused (test)",
+  "resultShown": false
+ },
+ "mainnet-beta": {
+  "Cluster": "MAINNET-BETA",
+  "Payer / owner": "5tzFkiKscXHK5ZXCGbXZxdw7gTjjD1mBwuoFbhUvuAi9",
+  "New asset address": "9ZZkpr45vCnezuqn6sApnJiZiVQSaSw48ZpnmEjRZxE5",
+  "Update authority": "Address 5tzFkiKscXHK5ZXCGbXZxdw7gTjjD1mBwuoFbhUvuAi9",
+  "Asset rent": "0.00350152 SOL",
+  "Agent Identity PDA rent": "0.00117856 SOL",
+  "Network fee": "0.00001 SOL",
+  "TOTAL cost": "0.00469008 SOL",
+  "checks": [
+   "✓ Simulation succeeded",
+   "✓ RPC genesis matches selected cluster",
+   "✓ Owner = connected wallet",
+   "✓ Update authority = connected wallet (no extra authority)",
+   "✓ Only AgentIdentity plugin",
+   "✓ AgentIdentity URI = Arweave registration",
+   "✓ Name / URI match",
+   "✓ Wallet balance covers total"
+  ],
+  "signCalls": 1,
+  "logTail": "Not sent: MOCK WALLET: signing refused (test)",
+  "resultShown": false
+ }
+}
