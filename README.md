@@ -11,3 +11,11 @@ The asset keypair is generated in the browser and signs only its own creation. T
 Build: `npm install && npm run build` (esbuild → `public/app.js`). Deploy: `npx wrangler pages deploy public --project-name percolator-mint --branch main`.
 Tests (never sign): `node test/simulate-devnet.mjs [payer] [devnet|mainnet-beta]`, `python3 test/live-browser.py https://mint.percolator.tech/` (mock wallet that refuses to sign).
 Default RPCs: devnet `https://api.devnet.solana.com`, mainnet `https://solana-rpc.publicnode.com` (the public mainnet-beta RPC returns 403 to browsers). An RPC override field is on the page.
+
+## v2.1 (2026-11-11): $CLAWD `tokens` list + on-asset mirror
+- Every agent minted here carries `tokens: [{ kind: "token2022", symbol: "CLAWD", mint: "8cHzQHUS2s2h8TzCmfqPKYiM4dSt4roa3n7MyRLApump", primary: true, pairing: "metadata", registry: null, … }]`:
+  in `agentMetadata` (API mode) and in the default mint URI, now the v3 registration `https://arweave.net/WFt5WZJ8lE0AJ8wKcSc5LCtX70JhDI1VXe1a8cR47pw` (Turbo free tier). Art uploads also write `tokens`.
+- Section 7 (optional): Core **Attributes** plugin mirror on the agent NFT (`agent_token`, `agent_token_symbol`, `agent_token_kind`, `agent_token_chain`, `agent_token_primary`).
+  `addPlugin` (or `updatePlugin`, keeping other traits). The update authority's wallet signs after simulate + quote + tick. Only Core in the tx.
+  Simulated (unsigned) on the devnet rehearsal asset `HnfZ…x1m4`: OK, 13,540 CU, **0.00121396 SOL** (0.00120396 rent for asset growth + 0.000005 fee). `test/attributes-devnet-sim.mjs`.
+- Enforced on-chain pairing will come from `Solizardking/percolator-agent-registry` (test chains only today).

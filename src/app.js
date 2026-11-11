@@ -3,7 +3,7 @@
 import { getWallets } from '@wallet-standard/app';
 import { VersionedTransaction, PublicKey } from '@solana/web3.js';
 import { walletAdapterIdentity } from '@metaplex-foundation/umi-signer-wallet-adapters';
-import { NAME, URI_V2, PROGRAMS, CLUSTERS, DEVNET_REHEARSAL_ASSET, CLAWD, agentMetadata } from './agent-config.js';
+import { NAME, URI_V2, URI_V3, PROGRAMS, CLUSTERS, DEVNET_REHEARSAL_ASSET, CLAWD, CLAWD_ATTRIBUTES, agentMetadata, tokensList } from './agent-config.js';
 import { simulate, sendSigned, confirm, assertCluster, rpc } from './txsim.js';
 import * as F from './flows.js';
 import { turboUpload, FREE_LIMIT } from './arweave.js';
@@ -15,7 +15,7 @@ const SOL = (l) => (Number(l) / 1e9).toFixed(9).replace(/0+$/, '').replace(/\.$/
 const short = (a) => (a ? a.slice(0, 4) + '…' + a.slice(-4) : '');
 const ex = (kind, id) => `https://explorer.solana.com/${kind}/${id}${CLUSTERS[cluster()].explorer}`;
 let wallet = null;
-let state = { uri: URI_V2, lastAsset: null, art: null };
+let state = { uri: URI_V3, lastAsset: null, art: null };
 
 const cluster = () => document.querySelector('input[name=cluster]:checked').value;
 const rpcUrl = () => $('rpc').value.trim() || CLUSTERS[cluster()].rpc;
@@ -66,6 +66,7 @@ function adapter() {
 
 // ---------- generic simulate -> quote -> tick -> wallet sign ----------
 const ALLOW = new Set([PROGRAMS.system, PROGRAMS.computeBudget, PROGRAMS.core, PROGRAMS.agentIdentity, PROGRAMS.agentTools]);
+const ALLOW_CORE_ONLY = new Set([PROGRAMS.system, PROGRAMS.computeBudget, PROGRAMS.core]);
 async function quoteFlow(box, { title, build, watch = () => [], extraChecks = () => [], extraRows = () => [], signWith, allow = ALLOW, onDone }) {
   need(); box.innerHTML = `<p>Simulating <b>${esc(title)}</b> on ${cluster()} …</p>`;
   const c = cluster(), url = rpcUrl();
@@ -145,7 +146,7 @@ async function uploadArt() {
     log('image uploaded: ' + img.url);
     const base = structuredClone(REG_V2); // bundled copy of the v2 Arweave registration (new items can take minutes to appear on gateways)
     const services = [...(base.services || []).filter((x) => x.name !== 'token'), { name: 'token', endpoint: CLAWD.url }];
-    const meta = { ...base, image: img.url, services, token: { ...CLAWD }, properties: { category: 'image', files: [{ uri: img.url, type: state.art.type }] } };
+    const meta = { ...base, image: img.url, services, token: { ...CLAWD }, tokens: tokensList(), properties: { category: 'image', files: [{ uri: img.url, type: state.art.type }] } };
     const mj = await turboUpload(new TextEncoder().encode(JSON.stringify(meta, null, 2)), 'application/json', [{ name: 'Title', value: 'Percolator agent registration' }]);
     log('metadata uploaded: ' + mj.url);
     state.uri = mj.url; $('uri').value = mj.url;
@@ -231,6 +232,32 @@ async function x402mRead() {
     <p>${(a.agents || []).some((x) => x.handle === 'percolator') ? '@percolator is registered.' : '<b>@percolator is not registered yet.</b>'} Inbox reads need the agent\'s own signed JWT, so there is no public inbox view.</p>`;
 }
 
+// ---------- 7 · mirror $CLAWD pairing onto the agent NFT (Core Attributes plugin) ----------
+async function attrStatus() {
+  const st = await F.attributesStatus(umiFor(false), { asset: assetInput() });
+  $('attrOut').innerHTML = `<table>${[['Asset owner', st.owner], ['Update authority', `${st.updateAuthority} (${st.updateAuthorityType})`],
+    ['Attributes plugin', st.hasAttributes ? 'present' : 'not present'],
+    ['Current attributes', st.attributes.length ? st.attributes.map((a) => `${a.key} = ${a.value}`).join('\n') : '(none)'],
+    ['$CLAWD mirror', st.mirrored ? '✓ already mirrored' : 'not mirrored'],
+    ['Will write', CLAWD_ATTRIBUTES.map((a) => `${a.key} = ${a.value}`).join('\n')]].map(([k, v]) => `<tr><th>${esc(k)}</th><td><pre style="margin:0;background:none;padding:0">${esc(v)}</pre></td></tr>`).join('')}</table>`;
+  return st;
+}
+async function attrFlow() {
+  if (!$('attrAck').checked) throw new Error('Tick the box first: this writes to the agent NFT (update authority signs).');
+  const asset = assetInput();
+  const st = await attrStatus();
+  if (st.updateAuthorityType !== 'Address' || st.updateAuthority !== wallet.address) throw new Error(`Your wallet is not this asset's update authority (${st.updateAuthority}).`);
+  if (st.mirrored) throw new Error('$CLAWD is already mirrored on this asset. Nothing to do.');
+  await quoteFlow($('attrQuote'), { title: `${st.hasAttributes ? 'updatePlugin' : 'addPlugin'} Attributes: mirror $CLAWD pairing onto ${short(asset)}`, allow: ALLOW_CORE_ONLY,
+    build: async () => ({ wire: await F.buildAttributesMirror(umiFor(false), { asset }) }), watch: () => [asset],
+    extraRows: () => [['Attributes written', CLAWD_ATTRIBUTES.map((a) => `${a.key}=${a.value}`).join(' · ')], ['Kept from existing plugin', st.attributes.filter((a) => !CLAWD_ATTRIBUTES.some((c) => c.key === a.key)).map((a) => a.key).join(', ') || '(none)']],
+    extraChecks: (b, sim) => { let d = null; try { d = F.decodeAttributes(asset, sim.accounts[1]?.postAccount); } catch {}
+      return [['Only Core (+ system/compute budget) programs', sim.programs.every((p) => ALLOW_CORE_ONLY.has(p))],
+        ['Simulated asset carries the $CLAWD attributes', !!d && CLAWD_ATTRIBUTES.every((c) => d.attributes.some((a) => a.key === c.key && a.value === c.value))],
+        ['Owner unchanged', !!d && d.owner === st.owner]]; },
+    onDone: () => attrStatus().catch(() => {}) });
+}
+
 // ---------- wiring ----------
 const guard = (fn, out) => () => fn().catch((e) => { (out ? $(out) : $('log')).textContent = (out ? '' : $('log').textContent) + 'Error: ' + (e?.message || e) + '\n'; });
 function onCluster() {
@@ -252,5 +279,7 @@ window.addEventListener('DOMContentLoaded', () => {
   $('x402Read').onclick = guard(x402Read, 'x402Out');
   $('mechApprove').onclick = guard(() => mechFlow('approve'), 'x402Quote'); $('mechRevoke').onclick = guard(() => mechFlow('revoke'), 'x402Quote');
   $('x402mRead').onclick = guard(x402mRead, 'x402mOut');
+  $('attrStatus').onclick = guard(attrStatus, 'attrOut'); $('attrBtn').onclick = guard(attrFlow, 'attrQuote');
+  $('tokensPreview').textContent = JSON.stringify(tokensList(), null, 1);
   document.querySelectorAll('input[name=cluster]').forEach((r) => (r.onchange = onCluster)); onCluster();
 });

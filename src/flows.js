@@ -2,11 +2,11 @@
 // nothing here signs with a wallet key or sends anything.
 import { createUmi } from '@metaplex-foundation/umi-bundle-defaults';
 import { createNoopSigner, publicKey as pk } from '@metaplex-foundation/umi';
-import { mplCore, findAssetSignerPda, deserializeAssetV1 } from '@metaplex-foundation/mpl-core';
+import { mplCore, findAssetSignerPda, deserializeAssetV1, fetchAssetV1, addPlugin, updatePlugin } from '@metaplex-foundation/mpl-core';
 import { mplAgentIdentity, mplAgentTools, mintAgent, registerExecutiveV1, delegateExecutionV1, revokeExecutionV1,
   findAgentIdentityV1Pda, findExecutiveProfileV1Pda, findExecutionDelegateRecordV1Pda } from '@metaplex-foundation/mpl-agent-registry';
 import { findAssociatedTokenPda, mplToolbox } from '@metaplex-foundation/mpl-toolbox';
-import { NAME, CLUSTERS, PROGRAMS, agentMetadata } from './agent-config.js';
+import { NAME, CLUSTERS, PROGRAMS, agentMetadata, CLAWD_ATTRIBUTES } from './agent-config.js';
 import { rpc, unb64 } from './txsim.js';
 
 export const METAPLEX_API = 'https://api.metaplex.com';
@@ -109,4 +109,32 @@ export async function buildDirectMint(umi, { wallet, uri }) {
     .add(registerIdentityV1(umi, { asset: asset.publicKey, agentRegistrationUri: uri }));
   const signed = await asset.signTransaction(await b.buildWithLatestBlockhash(umi));
   return { wire: umi.transactions.serialize(signed), assetAddress: asset.publicKey.toString(), identityPda };
+}
+
+/** Core Attributes mirror of the $CLAWD pairing (on-asset, update authority signs). */
+export async function attributesStatus(umi, { asset }) {
+  const a = await fetchAssetV1(umi, pk(asset));
+  const attributes = (a.attributes?.attributeList || []).map((x) => ({ key: x.key, value: x.value }));
+  return { owner: a.owner.toString(), updateAuthorityType: a.updateAuthority.type, updateAuthority: a.updateAuthority.address?.toString() ?? null,
+    hasAttributes: !!a.attributes, attributes,
+    mirrored: CLAWD_ATTRIBUTES.every((c) => attributes.some((x) => x.key === c.key && x.value === c.value)) };
+}
+export function mergedAttributes(existing) {
+  return [...existing.filter((x) => !CLAWD_ATTRIBUTES.some((c) => c.key === x.key)), ...CLAWD_ATTRIBUTES.map((c) => ({ ...c }))];
+}
+export async function buildAttributesMirror(umi, { asset }) {
+  const a = await fetchAssetV1(umi, pk(asset));
+  const collection = a.updateAuthority.type === 'Collection' ? a.updateAuthority.address : undefined;
+  const attributeList = mergedAttributes((a.attributes?.attributeList || []).map((x) => ({ key: x.key, value: x.value })));
+  const b = a.attributes
+    ? updatePlugin(umi, { asset: pk(asset), collection, plugin: { type: 'Attributes', attributeList } })
+    : addPlugin(umi, { asset: pk(asset), collection, plugin: { type: 'Attributes', attributeList } });
+  return wireOf(umi, b);
+}
+export function decodeAttributes(address, simAccount) {
+  if (!simAccount) return null;
+  const d = deserializeAssetV1({ publicKey: pk(address), executable: false, owner: pk(PROGRAMS.core),
+    lamports: { basisPoints: BigInt(simAccount.lamports), identifier: 'SOL', decimals: 9 }, data: unb64(simAccount.data[0]) });
+  return { owner: d.owner.toString(), attributes: (d.attributes?.attributeList || []).map((x) => ({ key: x.key, value: x.value })),
+    agentIdentities: (d.agentIdentities || []).length };
 }

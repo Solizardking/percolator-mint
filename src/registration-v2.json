@@ -63,5 +63,20 @@
     "launchpad": "pump.fun",
     "url": "https://pump.fun/coin/8cHzQHUS2s2h8TzCmfqPKYiM4dSt4roa3n7MyRLApump",
     "onchainAgentTokenSlot": "unset: setAgentTokenV1 only accepts a Genesis mint-funded launch account, which $CLAWD can never have"
-  }
+  },
+  "tokens": [
+    {
+      "kind": "token2022",
+      "symbol": "CLAWD",
+      "name": "solanaclawd",
+      "mint": "8cHzQHUS2s2h8TzCmfqPKYiM4dSt4roa3n7MyRLApump",
+      "chain": "solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp",
+      "standard": "spl-token-2022",
+      "launchpad": "pump.fun",
+      "url": "https://pump.fun/coin/8cHzQHUS2s2h8TzCmfqPKYiM4dSt4roa3n7MyRLApump",
+      "primary": true,
+      "pairing": "metadata",
+      "registry": null
+    }
+  ]
 }

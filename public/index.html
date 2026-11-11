@@ -64,11 +64,24 @@ Keep only a working balance there and revoke when idle. Metaplex's hosted delega
 
 <div class="card"><h2>6 · Agent token: $CLAWD only</h2>
 <p><b>$CLAWD</b> (<code>8cHzQHUS2s2h8TzCmfqPKYiM4dSt4roa3n7MyRLApump</code>, pump.fun) is the only token ever paired with any Percolator agent.
-It is named in every agent's metadata (<code>token</code> field and a <code>token</code> service). This console has no token-launch path.</p>
+It is named in every agent's metadata (<code>token</code> field, a <code>token</code> service, and the <code>tokens</code> list below, with $CLAWD as primary).
+Every agent minted here gets this list: the default URI is the v3 registration that carries it, and API mode sends it in <code>agentMetadata</code>. This console has no token-launch path.</p>
+<details><summary><code>tokens</code> list written to every new agent</summary><pre id="tokensPreview"></pre></details>
 <p class="note">The on-chain agent-token slot (<code>setAgentTokenV1</code>) stays <b>unset</b>: the program only accepts a Genesis launch account that it minted itself
 (GenesisAccountV2, funding mode Mint), and $CLAWD is a pump.fun Token-2022 mint with its mint authority revoked, so it can never qualify. Setting anything else would lock the agent to a non-$CLAWD token forever.</p></div>
 
+<div class="card"><h2>7 · Mirror the $CLAWD pairing onto the agent NFT (optional)</h2>
+<p>Adds a Core <b>Attributes</b> plugin to the agent asset (or updates the existing one, keeping its other traits) with
+<code>agent_token = 8cHzQHUS2s2h8TzCmfqPKYiM4dSt4roa3n7MyRLApump</code>, symbol CLAWD, kind token2022, primary. It shows up in DAS and every Core reader.
+Only the asset's update authority can write it, so your wallet signs. Costs only the rent for the extra bytes on the asset plus the network fee; the quote shows the exact amount.</p>
+<p class="note">This is a visible mirror, not on-chain enforcement. The enforced pairing will come from the open pairing registry
+(<code>A5tHHrrXcYaswtqHzh7V711CVNKPt2mLRou5yGy3ADJm</code>, clawd chain test deploy, unaudited, no mainnet program yet).
+Uses the agent asset field in section 3.</p>
+<label><input type="checkbox" id="attrAck"> I want to write the $CLAWD attributes to this agent NFT</label><br>
+<button id="attrStatus">Check asset attributes</button> <button id="attrBtn" class="needs-wallet" disabled>Simulate &amp; quote attribute mirror</button>
+<div id="attrOut"></div><div id="attrQuote" class="quotebox"></div></div>
+
 <pre id="log"></pre>
-<p class="note">Programs: MPL Core CoREENxT6tW1HoK8ypY1SxRMZTcVPm7R94rH4PZNhX7d · Agent Identity 1DREGFgysWYxLnRnKQnwrxnJQeSMk2HmGaC6whw2B2p · Agent Tools TLREGni9ZEyGC3vnPZtqUh95xQ8oPqJSvNjvB7FGK8S.
+<p class="note">Programs: MPL Core CoREENxT6tW1HoK8ypY1SxRMZTcVPm7R94rH4PZNhX7d · Agent Identity 1DREGFgysWYxLnRnKQnwrxnJQeSMk2HmGaC6whw2B2p · Agent Tools TLREGni9ZEyGC3vnPZtqUh95xQ8oPqJSvNjvB7FGK8S · Pairing registry (test chains) A5tHHrrXcYaswtqHzh7V711CVNKPt2mLRou5yGy3ADJm.
 Chat: <a href="https://x.ai/bot/9x8L2b2K8GSlEILhIXt53">x.ai/bot/9x8L2b2K8GSlEILhIXt53</a> · <a href="https://percolator.tech">percolator.tech</a> · <a href="https://trade.percolator.tech">trade</a></p>
 <script type="module" src="./app.js"></script></body></html>

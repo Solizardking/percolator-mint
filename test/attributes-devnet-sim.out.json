@@ -1,0 +1,102 @@
+{
+ "asset": "HnfZet9JoK8h3KH4GM24od4oWVBvwYjfC5noByzLx1m4",
+ "payer": "GKKmEVjHbAp4jePLJRqALYLjTLbT4rHNQA6c394dKC91",
+ "before": {
+  "owner": "GKKmEVjHbAp4jePLJRqALYLjTLbT4rHNQA6c394dKC91",
+  "updateAuthorityType": "Address",
+  "updateAuthority": "GKKmEVjHbAp4jePLJRqALYLjTLbT4rHNQA6c394dKC91",
+  "hasAttributes": false,
+  "attributes": [],
+  "mirrored": false
+ },
+ "attributes": {
+  "ok": true,
+  "err": null,
+  "cu": 13540,
+  "feeLamports": 5000,
+  "programs": [
+   "CoREENxT6tW1HoK8ypY1SxRMZTcVPm7R94rH4PZNhX7d"
+  ],
+  "feePayer": "GKKmEVjHbAp4jePLJRqALYLjTLbT4rHNQA6c394dKC91",
+  "signers": [
+   "GKKmEVjHbAp4jePLJRqALYLjTLbT4rHNQA6c394dKC91"
+  ],
+  "assetBytesBefore": null,
+  "assetLamports": [
+   3501520,
+   4705480
+  ],
+  "walletDelta": 1208960,
+  "totalLamports": 1213960,
+  "decoded": {
+   "owner": "GKKmEVjHbAp4jePLJRqALYLjTLbT4rHNQA6c394dKC91",
+   "attributes": [
+    {
+     "key": "agent_token",
+     "value": "8cHzQHUS2s2h8TzCmfqPKYiM4dSt4roa3n7MyRLApump"
+    },
+    {
+     "key": "agent_token_symbol",
+     "value": "CLAWD"
+    },
+    {
+     "key": "agent_token_kind",
+     "value": "token2022"
+    },
+    {
+     "key": "agent_token_chain",
+     "value": "solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp"
+    },
+    {
+     "key": "agent_token_primary",
+     "value": "true"
+    }
+   ],
+   "agentIdentities": 1
+  },
+  "allClawdKeys": true
+ },
+ "apiMint": {
+  "ok": true,
+  "err": null,
+  "cu": 46742,
+  "tokensSent": [
+   {
+    "kind": "token2022",
+    "symbol": "CLAWD",
+    "name": "solanaclawd",
+    "mint": "8cHzQHUS2s2h8TzCmfqPKYiM4dSt4roa3n7MyRLApump",
+    "chain": "solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp",
+    "standard": "spl-token-2022",
+    "launchpad": "pump.fun",
+    "url": "https://pump.fun/coin/8cHzQHUS2s2h8TzCmfqPKYiM4dSt4roa3n7MyRLApump",
+    "primary": true,
+    "pairing": "metadata",
+    "registry": null
+   }
+  ],
+  "total": 4995954
+ },
+ "directMint": {
+  "ok": true,
+  "err": null,
+  "uri": "https://arweave.net/WFt5WZJ8lE0AJ8wKcSc5LCtX70JhDI1VXe1a8cR47pw",
+  "identityUri": "https://arweave.net/WFt5WZJ8lE0AJ8wKcSc5LCtX70JhDI1VXe1a8cR47pw",
+  "total": 4700080
+ },
+ "agentMetadataTokens": [
+  {
+   "kind": "token2022",
+   "symbol": "CLAWD",
+   "name": "solanaclawd",
+   "mint": "8cHzQHUS2s2h8TzCmfqPKYiM4dSt4roa3n7MyRLApump",
+   "chain": "solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp",
+   "standard": "spl-token-2022",
+   "launchpad": "pump.fun",
+   "url": "https://pump.fun/coin/8cHzQHUS2s2h8TzCmfqPKYiM4dSt4roa3n7MyRLApump",
+   "primary": true,
+   "pairing": "metadata",
+   "registry": null
+  }
+ ]
+}
