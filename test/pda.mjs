@@ -1,0 +1,13 @@
+import { createUmi } from '@metaplex-foundation/umi-bundle-defaults';
+import { publicKey } from '@metaplex-foundation/umi';
+import * as R from '@metaplex-foundation/mpl-agent-registry';
+import { findAssetSignerPda } from '@metaplex-foundation/mpl-core';
+const umi = createUmi('https://api.devnet.solana.com').use(R.mplAgentIdentity()).use(R.mplAgentTools());
+const asset = publicKey('HnfZet9JoK8h3KH4GM24od4oWVBvwYjfC5noByzLx1m4');
+const dev = publicKey('GKKmEVjHbAp4jePLJRqALYLjTLbT4rHNQA6c394dKC91');
+console.log('idV1', R.findAgentIdentityV1Pda(umi,{asset})[0], 'idV2', R.findAgentIdentityV2Pda?.(umi,{asset})[0]);
+const ep = R.findExecutiveProfileV1Pda(umi,{authority:dev});
+console.log('execProfile(dev)', ep[0], 'delegateRec', R.findExecutionDelegateRecordV1Pda(umi,{executiveProfile:ep[0], agentAsset:asset})[0]);
+console.log('assetSigner', findAssetSignerPda(umi,{asset})[0]);
+console.log('tools program', umi.programs.get('mplAgentTools').publicKey);
+console.log(Object.keys(R).filter(k=>/Executive|Execution|mintAgent|signAndSend/.test(k)).join(' '));

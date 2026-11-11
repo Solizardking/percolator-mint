@@ -1,0 +1,68 @@
+{
+ "mint_api": [
+  "Action\tMint \"Percolator\" (Metaplex API mintAgent)",
+  "TOTAL from your wallet\t0.004927937 SOL",
+  "✓ Simulation succeeded",
+  "✓ RPC genesis matches devnet",
+  "✓ Fee payer = your wallet",
+  "✓ No address lookup tables (all accounts visible)",
+  "✓ Only expected programs",
+  "✓ Only your wallet still needs to sign",
+  "✓ Wallet balance covers it",
+  "✓ Asset: owner = your wallet",
+  "✓ Asset: update authority = your wallet (no extra authority)",
+  "✓ Asset: name \"Percolator\" and URI = chosen metadata",
+  "✓ Asset: only the AgentIdentity plugin",
+  "✓ AgentIdentity URI = Metaplex API record for this asset"
+ ],
+ "mint_direct": [
+  "Action\tMint \"Percolator\" (direct Core + registerIdentityV1)",
+  "TOTAL from your wallet\t0.00469008 SOL",
+  "✓ Simulation succeeded",
+  "✓ RPC genesis matches devnet",
+  "✓ Fee payer = your wallet",
+  "✓ No address lookup tables (all accounts visible)",
+  "✓ Only expected programs",
+  "✓ Only your wallet still needs to sign",
+  "✓ Wallet balance covers it",
+  "✓ Asset: owner = your wallet",
+  "✓ Asset: update authority = your wallet (no extra authority)",
+  "✓ Asset: name \"Percolator\" and URI = chosen metadata",
+  "✓ Asset: only the AgentIdentity plugin",
+  "✓ AgentIdentity URI = chosen metadata"
+ ],
+ "mint_sign_attempt": "Not sent: MOCK WALLET: signing refused (test)",
+ "execStatus": "Asset exists\ttrue\nAgent identity registered\ttrue\nAsset signer PDA\tDgP6EwDE2tUbqcP8qmdtcGPeT2pjdGP13BZwaeyTYuq1\nExecutive profile\tCuz3DT9ct6sGNEoxrjMQV46feAyTheUaizSiYeu5ELN2 (not registered)\nDelegation record\tE8JE4YkEQmSJ5UZKsC8Y4nRj1VGwRmZxtNAM5Zx2hVid (none)",
+ "register": [
+  "Action\tregisterExecutiveV1 (executive profile for your wallet)",
+  "TOTAL from your wallet\t0.00085844 SOL",
+  "✓ Simulation succeeded",
+  "✓ RPC genesis matches devnet",
+  "✓ Fee payer = your wallet",
+  "✓ No address lookup tables (all accounts visible)",
+  "✓ Only expected programs",
+  "✓ Only your wallet still needs to sign",
+  "✓ Wallet balance covers it"
+ ],
+ "register_delegate": [
+  "Action\tregisterExecutiveV1 + delegateExecutionV1 to your own wallet",
+  "TOTAL from your wallet\t0.002037 SOL",
+  "✓ Simulation succeeded",
+  "✓ RPC genesis matches devnet",
+  "✓ Fee payer = your wallet",
+  "✓ No address lookup tables (all accounts visible)",
+  "✓ Only expected programs",
+  "✓ Only your wallet still needs to sign",
+  "✓ Wallet balance covers it"
+ ],
+ "revoke(no record yet)": [
+  "Action\trevokeExecutionV1 (executive GKKm…KC91)",
+  "Cluster\tDEVNET",
+  "Fee payer\tGKKmEVjHbAp4jePLJRqALYLjTLbT4rHNQA6c394dKC91",
+  "✗ Simulation succeeded"
+ ],
+ "x402": "Agent signer PDA (findAssetSignerPda)\tDgP6EwDE2tUbqcP8qmdtcGPeT2pjdGP13BZwaeyTYuq1\nSOL in signer PDA\t0 SOL\nUSDC ATA (classic SPL)\t3vifqoLk9wdPyTtAYWTYfV9fA25eu6WxJfephLjDvgwc (not created)\nUSDC balance\t0 (mint 4zMMC9srt5Ri5X14GAgXhaHii3GnPAEERYPJgZJDncDU)\nMech delegate status (fetchMetaplexCoreExecuteDelegateStatus, Metaplex hosted API)\tnot delegated · record FkmJ6PdNjZeLA8gG2UJ1QuqWxEhkbNZAgT62sdgtsNr7",
+ "mech_on_devnet": "Error: Metaplex's hosted Mech delegate API builds mainnet transactions only (it rejects devnet assets as \"Invalid Core Asset\"). Rehearse delegation on devnet with section 3, then switch to mainnet.",
+ "x402m": "Protocol x402m/1 (experimental), https-polling, delivery at-least-once-until-ack, retention 7 days, federation false.\n\nCapabilities: x402m.register x402m.send x402m.inbox x402m.ack x402m.link\n\nHandle\tName · agent id\n@grok-local\tGrok Bot · yE2N6oD5koKCTJtb8BBfFQfGQpR6l7bq\n@i18903canary\tcanary · 132yajFEohkvvJKE7fJhWKVSQBYP0jxj\n@muse-peer\tMuse · nRbg4Eytl7oYIbgMDee6cXhgN8k4uikg\n@musebot-8\tmusebot · K8mQ1BNCtznuuk1S34grlLwzRpXik06b\n@p4231512\tprobe · utYvA7NfALe2YUF5L9WHmAlvyOUhGDqw\n@probe30922\tprobe · ldV9NIi0oVxMwywsiBkbk7BpSzb5WiA6\n@pumpfun-aaron\tpumpfun · bBVG7J4XMRxt7vW7Dr58brseC537aABP\n@t10424x\tt10424x · IKBisnbCzhFnLkTTKtZ9AbsFyOZ04b8p\n\n@percolator is not registered yet. Inbox reads need ",
+ "signCalls": 1
+}

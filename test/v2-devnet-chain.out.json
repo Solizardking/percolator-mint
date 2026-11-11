@@ -1,0 +1,56 @@
+{
+ "pdas": {
+  "assetSigner": "DgP6EwDE2tUbqcP8qmdtcGPeT2pjdGP13BZwaeyTYuq1",
+  "agentIdentity": "A2xLYQ2Swr5MFcNHe3n8yS7eznNwhKpihGZ7u58qkGXS",
+  "executiveProfile": "Cuz3DT9ct6sGNEoxrjMQV46feAyTheUaizSiYeu5ELN2",
+  "delegateRecord": "E8JE4YkEQmSJ5UZKsC8Y4nRj1VGwRmZxtNAM5Zx2hVid"
+ },
+ "registerPlusDelegate": {
+  "ok": true,
+  "err": null,
+  "fee": 5000,
+  "cu": 26578,
+  "accounts": [
+   "GKKmEVjHbAp4jePLJRqALYLjTLbT4rHNQA6c394dKC91 4995309920 -> 4993272920",
+   "Cuz3DT9ct6sGNEoxrjMQV46feAyTheUaizSiYeu5ELN2 0 -> 853440",
+   "E8JE4YkEQmSJ5UZKsC8Y4nRj1VGwRmZxtNAM5Zx2hVid 0 -> 1178560"
+  ],
+  "logs": [
+   "Program log: Instruction: RegisterExecutiveV1",
+   "Program 11111111111111111111111111111111 success",
+   "Program 11111111111111111111111111111111 success",
+   "Program 11111111111111111111111111111111 success",
+   "Program TLREGni9ZEyGC3vnPZtqUh95xQ8oPqJSvNjvB7FGK8S success",
+   "Program log: Instruction: DelegateExecutionV1",
+   "Program 11111111111111111111111111111111 success",
+   "Program 11111111111111111111111111111111 success",
+   "Program 11111111111111111111111111111111 success",
+   "Program TLREGni9ZEyGC3vnPZtqUh95xQ8oPqJSvNjvB7FGK8S success"
+  ]
+ },
+ "registerDelegateRevoke": {
+  "ok": true,
+  "err": null,
+  "fee": 5000,
+  "cu": 35119,
+  "accounts": [
+   "GKKmEVjHbAp4jePLJRqALYLjTLbT4rHNQA6c394dKC91 4995309920 -> 4994451480",
+   "Cuz3DT9ct6sGNEoxrjMQV46feAyTheUaizSiYeu5ELN2 0 -> 853440",
+   "E8JE4YkEQmSJ5UZKsC8Y4nRj1VGwRmZxtNAM5Zx2hVid 0 -> 0"
+  ],
+  "logs": [
+   "Program log: Instruction: RegisterExecutiveV1",
+   "Program 11111111111111111111111111111111 success",
+   "Program 11111111111111111111111111111111 success",
+   "Program 11111111111111111111111111111111 success",
+   "Program TLREGni9ZEyGC3vnPZtqUh95xQ8oPqJSvNjvB7FGK8S success",
+   "Program log: Instruction: DelegateExecutionV1",
+   "Program 11111111111111111111111111111111 success",
+   "Program 11111111111111111111111111111111 success",
+   "Program 11111111111111111111111111111111 success",
+   "Program TLREGni9ZEyGC3vnPZtqUh95xQ8oPqJSvNjvB7FGK8S success",
+   "Program log: Instruction: RevokeExecutionV1",
+   "Program TLREGni9ZEyGC3vnPZtqUh95xQ8oPqJSvNjvB7FGK8S success"
+  ]
+ }
+}

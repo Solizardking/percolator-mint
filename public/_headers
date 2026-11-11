@@ -3,3 +3,4 @@
   Referrer-Policy: no-referrer
   X-Content-Type-Options: nosniff
   Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://trade.percolator.tech https://arweave.net https://*.arweave.net; connect-src 'self' data: https://api.metaplex.com https://upload.ardrive.io https://arweave.net https://*.arweave.net https://api.devnet.solana.com https://solana-rpc.publicnode.com https: wss:; frame-ancestors 'none'

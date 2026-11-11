@@ -1,0 +1,13 @@
+name = "percolator-mint"
+pages_build_output_dir = "public"
+compatibility_date = "2026-11-01"
+
+[[d1_databases]]
+binding = "LIMITS"
+database_name = "percolator-mint-limits"
+database_id = "0d5f4c8f-8aaa-492e-9402-2ef312b213ee"
+
+[vars]
+DAILY_CAP = "50"
+IP_PER_HOUR = "3"
+IP_PER_DAY = "6"

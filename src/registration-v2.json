@@ -1,0 +1,67 @@
+{
+  "type": "https://eips.ethereum.org/EIPS/eip-8004#registration-v1",
+  "name": "Percolator",
+  "description": "Official Percolator agent for $CLAWD perpetuals. Reads and quotes markets on Solana devnet (program Anw121Fk3gKvUHXk938cY2xVb9Eq46WX3k15WESS49PA) and clawd chain through the read-only Percolator MCP, and offers Phoenix perps paper trading at trade.percolator.tech. Unaudited; devnet first; the user's wallet signs every transaction. Chat with it at https://x.ai/bot/9x8L2b2K8GSlEILhIXt53.",
+  "image": "https://trade.percolator.tech/logo-badge.png",
+  "services": [
+    {
+      "name": "web",
+      "endpoint": "https://percolator.tech"
+    },
+    {
+      "name": "MCP",
+      "endpoint": "https://percolator.tech/mcp",
+      "version": "2024-11-05",
+      "skills": [
+        "get_health",
+        "percolator_list_markets",
+        "percolator_read_market",
+        "percolator_oracle_price",
+        "percolator_quote",
+        "percolator_detect_venue"
+      ],
+      "domains": [
+        "perpetual-futures",
+        "solana"
+      ]
+    },
+    {
+      "name": "trading",
+      "endpoint": "https://trade.percolator.tech"
+    },
+    {
+      "name": "web",
+      "endpoint": "https://trade.percolator.tech/devnet"
+    },
+    {
+      "name": "install",
+      "endpoint": "https://install.percolator.tech"
+    },
+    {
+      "name": "chat",
+      "endpoint": "https://x.ai/bot/9x8L2b2K8GSlEILhIXt53"
+    },
+    {
+      "name": "x402m",
+      "endpoint": "https://musebook.trade/api/x402m/discovery"
+    },
+    {
+      "name": "token",
+      "endpoint": "https://pump.fun/coin/8cHzQHUS2s2h8TzCmfqPKYiM4dSt4roa3n7MyRLApump"
+    }
+  ],
+  "active": true,
+  "supportedTrust": [
+    "reputation"
+  ],
+  "token": {
+    "symbol": "CLAWD",
+    "name": "solanaclawd",
+    "mint": "8cHzQHUS2s2h8TzCmfqPKYiM4dSt4roa3n7MyRLApump",
+    "chain": "solana:5eykt4UsFv8P8NJdTREpY1vzqKqZKvdp",
+    "standard": "spl-token-2022",
+    "launchpad": "pump.fun",
+    "url": "https://pump.fun/coin/8cHzQHUS2s2h8TzCmfqPKYiM4dSt4roa3n7MyRLApump",
+    "onchainAgentTokenSlot": "unset: setAgentTokenV1 only accepts a Genesis mint-funded launch account, which $CLAWD can never have"
+  }
+}

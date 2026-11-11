@@ -1,0 +1,169 @@
+{
+ "apiMint": {
+  "assetAddress": "6iFWeo5Re2RDWeUmJvujkDZX3ryQ3NDx3gLacEYo68fg",
+  "ok": true,
+  "err": null,
+  "fee": 54817,
+  "cu": 40742,
+  "feePayer": "GKKmEVjHbAp4jePLJRqALYLjTLbT4rHNQA6c394dKC91",
+  "programs": [
+   "ComputeBudget111111111111111111111111111111",
+   "CoREENxT6tW1HoK8ypY1SxRMZTcVPm7R94rH4PZNhX7d",
+   "1DREGFgysWYxLnRnKQnwrxnJQeSMk2HmGaC6whw2B2p"
+  ],
+  "lut": false,
+  "signers": [
+   "GKKmEVjHbAp4jePLJRqALYLjTLbT4rHNQA6c394dKC91 (needs wallet)",
+   "6iFWeo5Re2RDWeUmJvujkDZX3ryQ3NDx3gLacEYo68fg (pre-signed)"
+  ],
+  "deltas": [
+   "GKKmEVjHbAp4jePLJRqALYLjTLbT4rHNQA6c394dKC91: exists 4.995309920 SOL -> 4.990381983 SOL",
+   "6iFWeo5Re2RDWeUmJvujkDZX3ryQ3NDx3gLacEYo68fg: new 0.000000000 SOL -> 0.003694560 SOL",
+   "CfUSYfd5eqomu2Au1mrBbHzGXCX9YMAP4iMXpje1xA5x: new 0.000000000 SOL -> 0.001178560 SOL"
+  ],
+  "decoded": {
+   "name": "Percolator",
+   "uri": "https://arweave.net/v9XDBEfoRlQCIKLolsjJm-ywC8VB0hGVNCyf4Pgtgns",
+   "owner": "GKKmEVjHbAp4jePLJRqALYLjTLbT4rHNQA6c394dKC91",
+   "updateAuthority": {
+    "type": "Address",
+    "address": "GKKmEVjHbAp4jePLJRqALYLjTLbT4rHNQA6c394dKC91"
+   },
+   "agentIdentities": [
+    {
+     "uri": "https://api.metaplex.com/v1/agents/6iFWeo5Re2RDWeUmJvujkDZX3ryQ3NDx3gLacEYo68fg?network=solana-devnet",
+     "lifecycleChecks": {
+      "transfer": [
+       0,
+       1,
+       2
+      ],
+      "update": [
+       0,
+       1,
+       2
+      ],
+      "execute": [
+       0,
+       1,
+       2
+      ]
+     }
+    }
+   ],
+   "pluginKeys": [
+    "pluginHeader",
+    "agentIdentities"
+   ]
+  },
+  "rentLamports": 4873120,
+  "totalLamports": 4927937
+ },
+ "statusBefore": {
+  "assetSigner": "DgP6EwDE2tUbqcP8qmdtcGPeT2pjdGP13BZwaeyTYuq1",
+  "agentIdentity": "A2xLYQ2Swr5MFcNHe3n8yS7eznNwhKpihGZ7u58qkGXS",
+  "executiveProfile": "Cuz3DT9ct6sGNEoxrjMQV46feAyTheUaizSiYeu5ELN2",
+  "delegateRecord": "E8JE4YkEQmSJ5UZKsC8Y4nRj1VGwRmZxtNAM5Zx2hVid",
+  "assetExists": true,
+  "identityRegistered": true,
+  "executiveProfileExists": false,
+  "delegated": false
+ },
+ "registerExecutive": {
+  "ok": true,
+  "err": null,
+  "fee": 5000,
+  "cu": 9446,
+  "feePayer": "GKKmEVjHbAp4jePLJRqALYLjTLbT4rHNQA6c394dKC91",
+  "programs": [
+   "TLREGni9ZEyGC3vnPZtqUh95xQ8oPqJSvNjvB7FGK8S"
+  ],
+  "lut": false,
+  "signers": [
+   "GKKmEVjHbAp4jePLJRqALYLjTLbT4rHNQA6c394dKC91 (needs wallet)"
+  ],
+  "deltas": [
+   "GKKmEVjHbAp4jePLJRqALYLjTLbT4rHNQA6c394dKC91: exists 4.995309920 SOL -> 4.994451480 SOL",
+   "Cuz3DT9ct6sGNEoxrjMQV46feAyTheUaizSiYeu5ELN2: new 0.000000000 SOL -> 0.000853440 SOL"
+  ]
+ },
+ "delegate": {
+  "ok": false,
+  "err": {
+   "InstructionError": [
+    0,
+    {
+     "Custom": 14
+    }
+   ]
+  },
+  "fee": 5000,
+  "cu": 2094,
+  "feePayer": "GKKmEVjHbAp4jePLJRqALYLjTLbT4rHNQA6c394dKC91",
+  "programs": [
+   "TLREGni9ZEyGC3vnPZtqUh95xQ8oPqJSvNjvB7FGK8S"
+  ],
+  "lut": false,
+  "signers": [
+   "GKKmEVjHbAp4jePLJRqALYLjTLbT4rHNQA6c394dKC91 (needs wallet)"
+  ],
+  "deltas": [
+   "GKKmEVjHbAp4jePLJRqALYLjTLbT4rHNQA6c394dKC91: exists 4.995309920 SOL -> 0.000000000 SOL",
+   "E8JE4YkEQmSJ5UZKsC8Y4nRj1VGwRmZxtNAM5Zx2hVid: new 0.000000000 SOL -> 0.000000000 SOL"
+  ],
+  "tail": [
+   "Program TLREGni9ZEyGC3vnPZtqUh95xQ8oPqJSvNjvB7FGK8S invoke [1]",
+   "Program log: Instruction: DelegateExecutionV1",
+   "Program log: Executive Profile must be initialized",
+   "Program TLREGni9ZEyGC3vnPZtqUh95xQ8oPqJSvNjvB7FGK8S consumed 2094 of 200000 compute units",
+   "Program TLREGni9ZEyGC3vnPZtqUh95xQ8oPqJSvNjvB7FGK8S failed: custom program error: 0xe"
+  ]
+ },
+ "revoke": {
+  "ok": false,
+  "err": {
+   "InstructionError": [
+    0,
+    {
+     "Custom": 12
+    }
+   ]
+  },
+  "fee": 5000,
+  "cu": 1728,
+  "feePayer": "GKKmEVjHbAp4jePLJRqALYLjTLbT4rHNQA6c394dKC91",
+  "programs": [
+   "TLREGni9ZEyGC3vnPZtqUh95xQ8oPqJSvNjvB7FGK8S"
+  ],
+  "lut": false,
+  "signers": [
+   "GKKmEVjHbAp4jePLJRqALYLjTLbT4rHNQA6c394dKC91 (needs wallet)"
+  ],
+  "deltas": [
+   "GKKmEVjHbAp4jePLJRqALYLjTLbT4rHNQA6c394dKC91: exists 4.995309920 SOL -> 0.000000000 SOL",
+   "E8JE4YkEQmSJ5UZKsC8Y4nRj1VGwRmZxtNAM5Zx2hVid: new 0.000000000 SOL -> 0.000000000 SOL"
+  ],
+  "tail": [
+   "Program TLREGni9ZEyGC3vnPZtqUh95xQ8oPqJSvNjvB7FGK8S invoke [1]",
+   "Program log: Instruction: RevokeExecutionV1",
+   "Program log: Execution Delegate Record must be initialized",
+   "Program TLREGni9ZEyGC3vnPZtqUh95xQ8oPqJSvNjvB7FGK8S consumed 1728 of 200000 compute units",
+   "Program TLREGni9ZEyGC3vnPZtqUh95xQ8oPqJSvNjvB7FGK8S failed: custom program error: 0xc"
+  ]
+ },
+ "signer": {
+  "signerPda": "DgP6EwDE2tUbqcP8qmdtcGPeT2pjdGP13BZwaeyTYuq1",
+  "sol": 0,
+  "usdcAta": "3vifqoLk9wdPyTtAYWTYfV9fA25eu6WxJfephLjDvgwc",
+  "usdc": 0,
+  "ataExists": false,
+  "usdcMint": "4zMMC9srt5Ri5X14GAgXhaHii3GnPAEERYPJgZJDncDU"
+ },
+ "mechStatus": {
+  "isDelegated": false,
+  "executionDelegateRecord": "FkmJ6PdNjZeLA8gG2UJ1QuqWxEhkbNZAgT62sdgtsNr7"
+ },
+ "mechApproveBuild": {
+  "error": "Invalid Core Asset"
+ }
+}
